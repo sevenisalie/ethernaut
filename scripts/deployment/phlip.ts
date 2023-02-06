@@ -5,13 +5,13 @@ async function main () {
     //instance
     //success
 
-    const LowCallFactory = await ethers.getContractFactory("LowCall")
-    const LowCallInstance = await LowCallFactory.deploy()
-    const succ = await LowCallInstance.deployed()
+    const PhlipFactory = await ethers.getContractFactory("Phlip")
+    const PhlipInstance = await PhlipFactory.deploy()
+    const succ = await PhlipInstance.deployed()
     if (!succ) {return}
     console.log(`
         LowCall deployed successfully
-        address: ${LowCallInstance.address}
+        address: ${PhlipInstance.address}
     `)
 }
 
