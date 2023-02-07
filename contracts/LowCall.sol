@@ -34,6 +34,6 @@ contract LowCall {
 
     function encodeCall(address king, uint256 offering) external pure returns (bytes memory) {
         return abi.encodeCall(IKOTHKoin.koth, (king, offering));
-    }
+    } 
 
 }
