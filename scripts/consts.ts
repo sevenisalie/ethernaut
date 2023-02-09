@@ -10,6 +10,7 @@ export const LEVEL_ADDRESSES = {
     force: "0x2Ac5683D8Fb7442F3d42358f1D6FDdC432A6247a",
     vault: "0x3E9918f0c8DFDF41e490eeBee3Fa9c10ab2c622F",
     king: "0xBeFD0DE7405dBc29c9562b5Ae5e61b486e37e380",
+    reentrancy: "0xe05E740b0E4A045f8DA32DC389aC5C3Ad0bD8568",
 }
 
 export const ADDRESSES = {
