@@ -10,7 +10,7 @@ async function main() {
         LEVEL_ADDRESSES.reentrancy,
         PLAYER,
         {
-            value: ethers.utils.parseUnits("0.01", 18)
+            value: ethers.utils.parseUnits("0.001", 18)
         }
     )
     const succ = await contract.deployed()

