@@ -12,6 +12,7 @@ export const LEVEL_ADDRESSES = {
     king: "0xBeFD0DE7405dBc29c9562b5Ae5e61b486e37e380",
     reentrancy: "0x0F6d161A282660a8Da52544057bd5099e01ca31A",
     elevator: "0x4f4Ae1D4b65F6402C5cB67421105EC32E6072800",
+    privacy: "0xE4fDf81Fa0D6bC15e5d7C5b34afa715E8c25063e"
 }
 
 export const ADDRESSES = {
