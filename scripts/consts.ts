@@ -11,6 +11,7 @@ export const LEVEL_ADDRESSES = {
     vault: "0x3E9918f0c8DFDF41e490eeBee3Fa9c10ab2c622F",
     king: "0xBeFD0DE7405dBc29c9562b5Ae5e61b486e37e380",
     reentrancy: "0x0F6d161A282660a8Da52544057bd5099e01ca31A",
+    elevator: "0x4f4Ae1D4b65F6402C5cB67421105EC32E6072800",
 }
 
 export const ADDRESSES = {
@@ -19,7 +20,8 @@ export const ADDRESSES = {
     delicateBall: "0x45Af57B152A441b0B96bC920697DdBC49B934B0D",
     phorce: "0xBD07A8aF1875d75f45a1C1dcAE4E77B10EA50A6E",
     hankHill: "0x0cCE255cC61263D45Fe6f30951034fAC65dff92A",
-    peeElephant: "0x0cF40BfD342bA67d4cFEf8c199d5DF16b0107023"
+    peeElephant: "0x0cF40BfD342bA67d4cFEf8c199d5DF16b0107023",
+    evilGator: "0x5b1A5d5f3FA921CeAAAf1b80e3a8f2b052F827FF",
 }
 
 export const SIGNER = getSigner()
