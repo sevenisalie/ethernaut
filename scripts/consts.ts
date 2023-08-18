@@ -14,7 +14,11 @@ export const LEVEL_ADDRESSES = {
     elevator: "0x4f4Ae1D4b65F6402C5cB67421105EC32E6072800",
     privacy: "0xE4fDf81Fa0D6bC15e5d7C5b34afa715E8c25063e",
     gatekeeper: "0xA3D68F0c447bd63Fe55d0b495c051c7671aaE992",
-    naughtCoin: "0x88899D00ed51f9803C95fd1Bec9DB57892a95E2c"
+    gatekeeperTwo: "0x7c6bb339951414Ffa4324Fadc35B0A70c8A58E4c",
+    naughtCoin: "0x88899D00ed51f9803C95fd1Bec9DB57892a95E2c",
+    reservation: "0xCAb4b1aFfc0fFCc237283B019385505a04F519Ae",
+    recoveryVictim: "0x5cECE66f3EB19f7Df3192Ae37C27D96D8396433D",
+    recovery: "0xe6b21EF8D7c3bA3C7DB49BaFE17Ea5B35fBd88Ee"
 }
 
 export const ADDRESSES = {
@@ -25,7 +29,10 @@ export const ADDRESSES = {
     hankHill: "0x0cCE255cC61263D45Fe6f30951034fAC65dff92A",
     peeElephant: "0x0cF40BfD342bA67d4cFEf8c199d5DF16b0107023",
     evilGator: "0x5b1A5d5f3FA921CeAAAf1b80e3a8f2b052F827FF",
-    naughtyBois: "0xFb3135cD4eD2fb5ffCc8590E8d99E2CDf4CfF3c7"
+    naughtyBois: "0xFb3135cD4eD2fb5ffCc8590E8d99E2CDf4CfF3c7",
+    rezervation: "0x21e245CAC833aA65166403a05d6fFF64e6b05770",
+    recovery: "0x7F11bF7BB6e17B6596a6e6D6Ce0DC9fD0d873fD0",
+    fatekeeper: "0x608F20BaA388Ba52bF892adA4CD37f090B2035E8"
 }
 
 export const SIGNER = getSigner()

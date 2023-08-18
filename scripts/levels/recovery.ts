@@ -5,13 +5,18 @@ import { providers } from "ethers"
 
 const pwn = async () => {
     const signer = await getSigner()
+    console.log("trying")
     const hack = await ethers.getContractAt(
-        "contracts/Gatekeeper.sol:Fatekeeper",
-        ADDRESSES.fatekeeper,
+        "contracts/Recovery.sol:Rescuer",
+        ADDRESSES.recovery,
         signer
     )
-    const pwn = await hack.pwn()
-    await pwn.wait()
+
+    const target = LEVEL_ADDRESSES.recovery
+
+    const recover = await hack.recover(target)
+    await recover.wait()
+
 }
 
 pwn()

@@ -38,6 +38,8 @@ contract GatekeeperOne {
     }
 }
 
+
+
 contract Fatekeeper is GatekeeperOne {
     GatekeeperOne public TargetGateKeeper;
 
