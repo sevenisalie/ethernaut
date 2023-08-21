@@ -18,7 +18,9 @@ export const LEVEL_ADDRESSES = {
     naughtCoin: "0x88899D00ed51f9803C95fd1Bec9DB57892a95E2c",
     reservation: "0xCAb4b1aFfc0fFCc237283B019385505a04F519Ae",
     recoveryVictim: "0x5cECE66f3EB19f7Df3192Ae37C27D96D8396433D",
-    recovery: "0xe6b21EF8D7c3bA3C7DB49BaFE17Ea5B35fBd88Ee"
+    recovery: "0xe6b21EF8D7c3bA3C7DB49BaFE17Ea5B35fBd88Ee",
+    shop: "0x1B9C671D52a530265BAeFEd0D1a025466044ab98",
+    denial: "0x1eb819599F215DbD9A7bcA9502F16c65dc16734B"
 }
 
 export const ADDRESSES = {
@@ -32,7 +34,9 @@ export const ADDRESSES = {
     naughtyBois: "0xFb3135cD4eD2fb5ffCc8590E8d99E2CDf4CfF3c7",
     rezervation: "0x21e245CAC833aA65166403a05d6fFF64e6b05770",
     recovery: "0x7F11bF7BB6e17B6596a6e6D6Ce0DC9fD0d873fD0",
-    fatekeeper: "0x608F20BaA388Ba52bF892adA4CD37f090B2035E8"
+    fatekeeper: "0x608F20BaA388Ba52bF892adA4CD37f090B2035E8",
+    shoplifter: "0x1ae718b4b9F753653ADeC109Bb8f91301FB33a89",
+    denile: "0x7fFCF7fc8f7c035C22a988dDFFE7803f21783F3b"
 }
 
 export const SIGNER = getSigner()
