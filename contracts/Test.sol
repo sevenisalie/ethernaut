@@ -2,6 +2,29 @@
 pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 
+contract InitCodeTest {
+    constructor(){}
+    function getBytecode() public view returns (bytes memory) {
+          bytes memory bytecode = type(MagicNumberTest).creationCode;
+          bytes memory s = type(MagicNumberTest).runtimeCode;
+          bytes32 b = bytes32(bytecode);
+          console.log("Initcode");
+            console.logBytes(bytecode);
+                      console.log("Runtimecode");
+            console.logBytes(s);
+
+  return bytecode;
+    }
+}
+//0x6080604052348015600f57600080fd5b5069602a60005260006020f3600052603f80602b6000396000f3fe
+contract SimpleContract {
+    fallback() payable external {
+        assembly {
+            
+        }
+    }
+}
+
 contract MagicNumberTest {
 //0x60 0x2A   //push v <------ 0x2A is "42" in hex (dont forget your towel)
 //0x60 0x00   //push p  <---- the memory slot; we will use 0 because our contract has literally nothing else normally important shit goes at slot0 so dont use it in the wild
@@ -9,11 +32,24 @@ contract MagicNumberTest {
 //0x60 0x00   //push p   <------ place is 0
 //0x60 0x20   //push s <------- size is 32 because of mstore's default size that we put "42" into. (0x20 is 32 in hex)
 //0xF3    // return(p, s) <----- return everything in memory from place p with size s
-// concat them all to get runtime code: 0x6002A0600000520000600200F3
+// concat them all to get runtime code: 0x602A60005260006020F3
 
-constructor(address _target) {
-    address deployedBytecode;
-    assembly {}
+
+//INIT CODE
+// 0x69 0x602A60005260006020F3 //push10 0x602A60005260006020F3
+// 0x60 0x00 //push 0x00
+//0x52 //msstore 
+//0x60 0x0A //push 0x0A
+//0x60 0x16 //push 0x16
+//0xF3 //return 
+// 0x69602A60005260006020F3600052600A6016F3
+
+
+
+constructor() {
+    assembly {
+        mstore(0x00, 0x602A60005260006020F3)
+    }
 }
     
 }

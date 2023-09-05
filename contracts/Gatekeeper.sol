@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "hardhat/console.sol";
+
 contract Fatekeeper {
     GatekeeperOne target;
     address targetAddress; 
@@ -16,6 +18,8 @@ contract Fatekeeper {
 
         return bytes8(k2);  
     }
+
+            
 
     function pwn() external returns (bool) {
         bytes8 key = generateKey();

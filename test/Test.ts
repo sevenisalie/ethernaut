@@ -16,7 +16,7 @@ describe("Reservation", function () {
         // Contracts are deployed using the first signer/account by default
         const [owner, otherAccount] = await ethers.getSigners();
         const Test = await ethers.getContractFactory(
-            "contracts/Test.sol:GateThreeTest",
+            "contracts/Test.sol:InitCodeTest",
             owner
         )
         const test = await Test.deploy()
@@ -39,17 +39,15 @@ describe("Reservation", function () {
     describe("Pwn", () => {
         it("Generate Key to Pass Gate3", async () => {
             const { owner, test } = await loadFixture(deployRecovery)
-            const response = await test.pwn()
-            console.log(response)
-            await expect(response).to.be.true
+            const response = await test.getBytecode()
         })
 
-        it("Pass Gate 2", async () => {
-            const { owner, test, test2, test2Caller } = await loadFixture(deployRecovery)
-            const response = await test2Caller.test()
-            console.log(response)
-            await expect((await test2.entrant())).to.equal(owner.address)
-        })
+        // it("Pass Gate 2", async () => {
+        //     const { owner, test, test2, test2Caller } = await loadFixture(deployRecovery)
+        //     const response = await test2Caller.test()
+        //     console.log(response)
+        //     await expect((await test2.entrant())).to.equal(owner.address)
+        // })
     })
 
 

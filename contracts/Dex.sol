@@ -17,6 +17,8 @@ interface Dex {
     function token2() external view returns(address);
 }
 
+
+
 contract PokeDex {
     Dex target;
     address targetAddress;
@@ -34,6 +36,8 @@ contract PokeDex {
         token1Address = target.token1();
         token2Address = target.token2();
     }
+
+
     
     function pwn() public {
         token1.transferFrom(msg.sender, address(this), token1.balanceOf(msg.sender));
